@@ -1,4 +1,4 @@
-/**
+package org.example.hjælpefiler; /**
  * This class handles loading from a CSV data file.
  *
  * @author Giovanni Meroni

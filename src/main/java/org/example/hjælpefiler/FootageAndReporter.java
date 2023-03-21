@@ -1,7 +1,6 @@
-package org.example;
+package org.example.hjælpefiler;
 
 import jdk.javadoc.doclet.Reporter;
-import org.example.Footage;
 
 import java.util.Date;
 
