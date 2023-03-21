@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.GUI.ViewController">
+   <children>
+      <TabPane fx:id="tabs" prefHeight="147.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="653.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+            <Tab id="Command" text="Command">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" pickOnBounds="false" prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="1200.0" spacing="30.0">
+                                       <children>
+                                          <Label id="Primary Keys" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="119.0" text="Command" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="21.0" />
+                                             </font>
+                                          </Label>
+                                          <VBox prefHeight="44.0" prefWidth="1010.0" spacing="5.0">
+                                             <children>
+                                                <TextField prefHeight="44.0" prefWidth="655.0">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </TextField>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab id="Journalist" text="Search">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" pickOnBounds="false" prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <VBox prefHeight="71.0" prefWidth="1200.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="1200.0" spacing="30.0">
+                                       <children>
+                                          <Label id="Primary Keys" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="261.0" text="Database" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="21.0" />
+                                             </font>
+                                          </Label>
+                                          <VBox layoutX="159.0" layoutY="10.0" prefHeight="47.0" prefWidth="164.0" spacing="5.0">
+                                             <children>
+                                                <Label id="ID" text="Choose Database" />
+                                                <ComboBox fx:id="databaseBox" prefWidth="150.0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="159.0" layoutY="10.0" prefHeight="47.0" prefWidth="164.0" spacing="5.0">
+                                             <children>
+                                                <Label id="ID" text="Choose Search Key" />
+                                                <ComboBox fx:id="keyBox" prefWidth="150.0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="47.0" prefWidth="164.0" spacing="5.0">
+                                             <children>
+                                                <Label id="ID" text="Search with Key" />
+                                                <TextField fx:id="keyInput" prefHeight="25.0" prefWidth="46.0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <VBox alignment="TOP_CENTER" layoutY="117.0" maxHeight="-Infinity" prefHeight="683.0" prefWidth="1200.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <CheckBox fx:id="editableCheckBox" mnemonicParsing="false" text="Editable" />
+                  <Button fx:id="addButton" mnemonicParsing="false" text="AddRow" />
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
+            <HBox fx:id="headers" alignment="CENTER" minHeight="30.0" prefHeight="30.0" prefWidth="1199.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <ScrollPane fx:id="scroll" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="761.0" prefWidth="500.0" vbarPolicy="ALWAYS">
+              <content>
+                <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="640.0" prefWidth="485.0">
+                     <children>
+                        <VBox fx:id="content" prefHeight="641.0" prefWidth="486.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" />
+               </VBox.margin>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

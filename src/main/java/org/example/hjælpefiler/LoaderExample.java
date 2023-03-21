@@ -12,7 +12,7 @@ public class LoaderExample {
 			List<FootageAndReporter> footagesAndReporters = loader.loadFootagesAndReporters(args[0]);
 			for(FootageAndReporter footageAndReporter : footagesAndReporters) {
 				System.out.print("\tFootage: " + footageAndReporter.getFootage());
-				System.out.println("\tReporter: " + footageAndReporter.getReporter());
+				System.out.println("\tReporter: " + footageAndReporter.getJournalist());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

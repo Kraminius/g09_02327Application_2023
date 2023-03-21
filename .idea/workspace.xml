@@ -4,19 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="509c0f07-8854-4a40-80e2-20028eaaa2f3" name="Changes" comment="">
+    <list default="true" id="509c0f07-8854-4a40-80e2-20028eaaa2f3" name="Changes" comment="Renamed Reporter to Journalist, because Reporter is a class in javax and it created problems.">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ressources/view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/hjælpefiler/LoaderExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/hjælpefiler/LoaderExample.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="e831b597-5f1f-425d-a1f6-76e9f7e9fa47" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2N0097ng5qxhWaYCE7RGgojTQGs" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -24,14 +45,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/tobia/OneDrive/Coding/javafx-sdk-19/lib",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tobia\OneDrive\DTU\1. Semester\Introduktion til Programmering\g09_02327Application_2023\src\main\Ressources" />
+      <recent name="C:\Users\tobia\OneDrive\DTU\1. Semester\Introduktion til Programmering\g09_02327Application_2023\src\main\Ressources\org.example" />
+      <recent name="C:\Users\tobia\OneDrive\DTU\1. Semester\Introduktion til Programmering\g09_02327Application_2023\src\main" />
+      <recent name="C:\Users\tobia\OneDrive\DTU\1. Semester\Introduktion til Programmering\g09_02327Application_2023\Ressources" />
+      <recent name="C:\Users\tobia\OneDrive\DTU\1. Semester\Introduktion til Programmering\g09_02327Application_2023\src\main\java\org\example\GUI" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.Old" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Run" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="g09_02327Application_2023" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\tobia\OneDrive\Coding\javafx-sdk-19\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -42,7 +90,23 @@
       <updated>1678785537542</updated>
       <workItem from="1678785539017" duration="415000" />
       <workItem from="1678787721725" duration="1356000" />
+      <workItem from="1679384809662" duration="18010000" />
     </task>
+    <task id="LOCAL-00001" summary="Refactored Project">
+      <created>1679384942013</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679384942013</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Renamed Reporter to Journalist, because Reporter is a class in javax and it created problems.">
+      <created>1679387644083</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1679387644083</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -58,5 +122,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Refactored Project" />
+    <MESSAGE value="Renamed Reporter to Journalist, because Reporter is a class in javax and it created problems." />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed Reporter to Journalist, because Reporter is a class in javax and it created problems." />
   </component>
 </project>

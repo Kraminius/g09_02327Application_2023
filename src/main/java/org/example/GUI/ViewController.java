@@ -1,0 +1,228 @@
+package org.example.GUI;
+
+import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
+import javax.swing.text.View;
+import java.util.ArrayList;
+
+public class ViewController {
+    @FXML
+    TabPane tabs;
+    @FXML
+    VBox content;
+    @FXML
+    HBox headers;
+    @FXML
+    AnchorPane anchor;
+    @FXML
+    ScrollPane scroll;
+    @FXML
+    TextField keyInput;
+    @FXML
+    ComboBox keyBox;
+    @FXML
+    ComboBox databaseBox;
+    @FXML
+    Label databaseName;
+    @FXML
+    CheckBox editableCheckBox;
+    @FXML
+    Button addButton;
+
+    boolean editable = false;
+    String currentTable = "";
+    ArrayList<ArrayList<String>> current;
+    ArrayList<ArrayList<String>> edited;
+    ArrayList<ArrayList<TextArea>> fields = new ArrayList<>();
+    boolean[] nullable;
+    String[] tableNames;
+    String[] keys;
+
+    @FXML
+    void initialize(){
+        test();
+        editableCheckBox.setOnAction(e -> setEditable());
+        addButton.setOnAction(e -> addRow());
+    }
+    private void setEditable(){
+        editable = editableCheckBox.selectedProperty().get();
+        fill();
+    }
+    private void test(){
+        ArrayList<ArrayList<String>> testTable = new ArrayList<>();
+        ArrayList<String> line = new ArrayList<>();
+        line.add("Employee Number");
+        line.add("Name              ");
+        line.add("Other         ");
+        line.add("Extra Thing    ");
+        ArrayList<String> line2 = new ArrayList<>();
+        line2.add("00000");
+        line2.add("Miki Brøns Sejersten Løngaard Hansen");
+        line2.add("IDK");
+        line2.add("Can jump higher than a snail");
+        testTable.add(line);
+        testTable.add(line2);
+        testTable.add(line2);
+        testTable.add(line);
+        boolean[] nullTest = new boolean[4];
+        nullTest[0] = false;
+        nullTest[1] = true;
+        nullTest[2] = true;
+        nullTest[3] = true;
+        setNewTable(testTable, nullTest);
+        fill();
+    }
+    void setComboBoxes(){ //Adds the values to the comboboxes of databses and keys
+        tableNames = ViewHandler.get().getTableNames();
+        if(tableNames != null){
+            for(int i = 0; i < tableNames.length; i++){
+                databaseBox.getItems().clear();
+                databaseBox.getItems().add(tableNames[i]);
+            }
+            databaseBox.setValue(databaseBox.getItems().get(0));
+            databaseName.setText(databaseBox.getValue().toString());
+            keys = ViewHandler.get().getKeys(databaseName.getText());
+            if(keys != null){
+                for(int i = 0; i < keys.length; i++){
+                    keyBox.getItems().clear();
+                    keyBox.getItems().add(keys[i]);
+                }
+                keyBox.setValue(keyBox.getItems().get(0));
+            }
+        }
+    }
+    void addRow(){
+        ArrayList<String> newLine = new ArrayList<>();
+        for(int i = 0; i < edited.get(0).size(); i++){
+            if(nullable[i]) newLine.add("null");
+            else newLine.add("");
+
+        }
+        edited.add(newLine);
+        editChecks();
+        current = edited;
+        fill();
+    }
+    ArrayList<ArrayList<String>> copyArrayArray(ArrayList<ArrayList<String>> a){
+        //Copies the values from a into b
+        ArrayList<ArrayList<String>> b = new ArrayList<>();
+        for(int i = 0; i < a.size(); i++){
+            ArrayList<String> line = new ArrayList<>();
+            for(int j = 0; j < a.get(i).size(); j++){
+                line.add(a.get(i).get(j));
+            }
+            b.add(line);
+        }
+        return b;
+    }
+    public void setNewTable(ArrayList<ArrayList<String>> table, boolean[] canBeNull){
+        current = table;
+        nullable = canBeNull;
+    }
+    public void fill(){
+        ArrayList<ArrayList<String>> table = current;
+        edited = copyArrayArray(table);
+
+        headers.getChildren().clear();
+        content.getChildren().clear();
+        ArrayList<String> firstLine = table.get(0);
+        int totalWidth = 0;
+        int[] widths = new int[firstLine.size()];
+        //Creates the boxes and text for the first line, along with getting the size of the different columns.
+        for(int i = 0; i < firstLine.size(); i++){
+            String text = firstLine.get(i);
+            VBox element = new VBox();
+            element.setPrefHeight(30);
+            int width = text.length()*10;
+            element.setPrefWidth(width);
+            totalWidth += width;
+            widths[i] = width;
+            Label label = new Label(" " + text);
+            label.setStyle("-fx-text-fill: #eeeeee");
+            element.setStyle("-fx-border-color: #cccccc; -fx-background-color: #1f9fce");
+            element.setAlignment(Pos.CENTER_LEFT);
+            element.getChildren().add(label);
+            headers.getChildren().add(element);
+        }
+
+        fields.clear();
+        int totalHeight = 0;
+        for(int i = 1; i < table.size(); i++){
+            HBox row = new HBox();
+            int rowHeight = 0;
+            ArrayList<TextArea> fieldLine = new ArrayList<>();
+            for(int n = 0; n < table.get(i).size(); n++){
+                String text = table.get(i).get(n);
+                VBox element = new VBox();
+                element.setPrefWidth(widths[n]);
+                TextArea field = new TextArea(text);
+                int x = n, y = i;
+                field.setOnKeyTyped(e -> edit(x, y));
+                fieldLine.add(field);
+                field.setWrapText(true);
+                field.setEditable(editable);
+                if(i%2 == 0) field.setStyle("-fx-text-fill: #404040; -fx-background-color: #94efff");
+                else field.setStyle("-fx-text-fill: #404040; -fx-background-color: #eeeeee");
+                element.setStyle("-fx-border-color: #cccccc");
+                element.setAlignment(Pos.CENTER_LEFT);
+                element.getChildren().add(field);
+                element.setPadding(new Insets(2));
+                row.getChildren().add(element);
+                int height = 30;
+                int length = text.length()*10;
+                element.setPrefHeight(height);
+                while(widths[n] < length){
+                    height+=30;
+                    length-=widths[n];
+                    element.setPrefHeight(height);
+                }
+
+                if(height > rowHeight) rowHeight = height;
+            }
+            fields.add(fieldLine);
+            row.setPrefHeight(rowHeight);
+            totalHeight+=rowHeight+10;
+            content.getChildren().add(row);
+        }
+        //Resizes most things, so they fit the size of the scrollbar.
+        scroll.setPrefWidth(totalWidth+15);
+        scroll.setTranslateX(2);//It centers and is now slightly off center, so moves it a bit to the right
+        if(scroll.getHeight() < totalHeight*15) scroll.setPrefHeight(totalHeight);
+        headers.setPrefWidth(totalWidth);
+        content.setPrefWidth(totalWidth);
+        content.setPrefHeight(totalHeight);
+        anchor.setPrefWidth(totalWidth);
+        anchor.setPrefHeight(totalHeight);
+    }
+    public void edit(int x, int y){
+        //It should do a check here, to see if there will be an error when parsing. We must therefore save the datatypes of each column.
+        edited.get(y).set(x, fields.get(y-1).get(x).getText()); //plus ones to the first one, because there are the headers.
+        ViewHandler.get().changeAt(x, y-1, fields.get(y-1).get(x).getText(), currentTable);
+        editChecks();
+        current = edited;
+    }
+    void editChecks(){
+        checkForNull();
+    }
+    void checkForNull(){
+        for(int y = 0; y < edited.size(); y++){
+            for(int x = 0; x < edited.get(y).size(); x++){
+                if(edited.get(y).get(x).equals("") || edited.get(y).get(x).equals("CANNOT_BE_NULL")) edited.get(y).set(x, "null");
+                if(edited.get(y).get(x).equals("null")) {
+                    if(!nullable[x]) edited.get(y).set(x, "CANNOT_BE_NULL");
+                }
+            }
+        }
+    }
+
+    private void sendData(){
+        ViewHandler.get().sendData(current);
+        //send current
+    }
+}
