@@ -1,17 +1,16 @@
 package org.example;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.example.GUI.ViewHandler;
+
+import java.sql.SQLException;
 
 public class Main extends Application {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        DataHandler dataHandler = new DataHandler();
         launch();
     }
 

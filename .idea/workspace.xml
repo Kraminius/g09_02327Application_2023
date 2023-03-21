@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="509c0f07-8854-4a40-80e2-20028eaaa2f3" name="Changes" comment="Renamed Reporter to Journalist, because Reporter is a class in javax and it created problems.">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Ressources/view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="509c0f07-8854-4a40-80e2-20028eaaa2f3" name="Changes" comment="GUI Created">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DataHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/SQL/OnlineDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Ressources/view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Ressources/view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/hjælpefiler/LoaderExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/hjælpefiler/LoaderExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Old/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/SQL/Database.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -90,7 +90,7 @@
       <updated>1678785537542</updated>
       <workItem from="1678785539017" duration="415000" />
       <workItem from="1678787721725" duration="1356000" />
-      <workItem from="1679384809662" duration="18010000" />
+      <workItem from="1679384809662" duration="22285000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored Project">
       <created>1679384942013</created>
@@ -106,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679387644083</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="GUI Created">
+      <created>1679406588710</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1679406588710</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +133,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactored Project" />
     <MESSAGE value="Renamed Reporter to Journalist, because Reporter is a class in javax and it created problems." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed Reporter to Journalist, because Reporter is a class in javax and it created problems." />
+    <MESSAGE value="GUI Created" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI Created" />
   </component>
 </project>

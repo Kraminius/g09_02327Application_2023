@@ -8,10 +8,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import javax.swing.text.View;
 import java.util.ArrayList;
 
 public class ViewController {
+    @FXML
+    Button executeButton;
     @FXML
     TabPane tabs;
     @FXML
@@ -34,6 +35,10 @@ public class ViewController {
     CheckBox editableCheckBox;
     @FXML
     Button addButton;
+    @FXML
+    TextArea command;
+    @FXML
+    Label errorLabel;
 
     boolean editable = false;
     String currentTable = "";
@@ -46,13 +51,20 @@ public class ViewController {
 
     @FXML
     void initialize(){
-        test();
         editableCheckBox.setOnAction(e -> setEditable());
         addButton.setOnAction(e -> addRow());
+        executeButton.setOnAction(e -> sendCommand());
+    }
+
+    private void sendCommand(){
+        ViewHandler.get().execCommand(command.getText());
     }
     private void setEditable(){
         editable = editableCheckBox.selectedProperty().get();
         fill();
+    }
+    public void setError(String text){
+        errorLabel.setText(text);
     }
     private void test(){
         ArrayList<ArrayList<String>> testTable = new ArrayList<>();
@@ -124,6 +136,7 @@ public class ViewController {
     public void setNewTable(ArrayList<ArrayList<String>> table, boolean[] canBeNull){
         current = table;
         nullable = canBeNull;
+        fill();
     }
     public void fill(){
         ArrayList<ArrayList<String>> table = current;
@@ -139,7 +152,8 @@ public class ViewController {
             String text = firstLine.get(i);
             VBox element = new VBox();
             element.setPrefHeight(30);
-            int width = text.length()*10;
+            //int width = text.length()*10;
+            int width = 120;
             element.setPrefWidth(width);
             totalWidth += width;
             widths[i] = width;
@@ -177,11 +191,7 @@ public class ViewController {
                 int height = 30;
                 int length = text.length()*10;
                 element.setPrefHeight(height);
-                while(widths[n] < length){
-                    height+=30;
-                    length-=widths[n];
-                    element.setPrefHeight(height);
-                }
+                height *= 1.5;
 
                 if(height > rowHeight) rowHeight = height;
             }

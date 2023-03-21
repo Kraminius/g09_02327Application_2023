@@ -1,4 +1,4 @@
-package org.example.Old;
+package org.example.SQL;
 
 import java.sql.*;
 import java.util.Scanner;

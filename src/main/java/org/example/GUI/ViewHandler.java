@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import org.example.DataHandler;
 import org.example.Main;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class ViewHandler {
     private static ViewHandler viewHandler;
     private ViewController controller;
     private Stage stage;
+    private DataHandler dataHandler;
 
     public static ViewHandler get(){
         if(viewHandler == null) viewHandler = new ViewHandler();
@@ -50,6 +52,9 @@ public class ViewHandler {
     public void changeAt(int x, int y, String changeTo, String table){//Should change at x and y into changeTo in table Table
 
     }
+    public void sendError(String errorMessage){
+        controller.setError(errorMessage);
+    }
     public void showTable(ArrayList<ArrayList<String>> table, boolean[] isNullAble){
         controller.setNewTable(table, isNullAble);
     }
@@ -77,6 +82,11 @@ public class ViewHandler {
             return;
         }
     }
-
+    public void setDataHandler(DataHandler dh){
+        dataHandler = dh;
+    }
+    public void execCommand(String command){
+        dataHandler.execCommand(command);
+    }
 
 }
