@@ -1,6 +1,6 @@
 package org.example.hjælpefiler;
 
-public class Reporter {
+public class Journalist {
 
     private final Integer cpr;
     private final String firstName;
@@ -10,7 +10,7 @@ public class Reporter {
     private final Integer zipCode;
     private final String country;
 
-    public Reporter(Integer cpr, String firstName, String lastName, String streetName, Integer civicNumber, Integer zipCode, String country) {
+    public Journalist(Integer cpr, String firstName, String lastName, String streetName, Integer civicNumber, Integer zipCode, String country) {
         this.cpr = cpr;
         this.firstName = firstName;
         this.lastName = lastName;
