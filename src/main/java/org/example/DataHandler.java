@@ -20,6 +20,7 @@ public class DataHandler {
             ViewHandler.get().sendError("Command Failed");
         }
         else{
+            ViewHandler.get().sendError("");
             boolean[] bools = new boolean[output.get(0).size()];
             ViewHandler.get().showTable(output, bools);
         }
