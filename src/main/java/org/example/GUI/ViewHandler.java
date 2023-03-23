@@ -60,11 +60,11 @@ public class ViewHandler {
     }
     public String[] getTableNames(){
         //Should return the different tables existing in the database
-        return  null;
+        return dataHandler.getTableNames();
     }
     public String[] getKeys(String name){
         //Should return the primary keys of a given table
-        return  null;
+        return dataHandler.getKeys(name);
     }
 
     public ArrayList<ArrayList<String>> getTable(String table){

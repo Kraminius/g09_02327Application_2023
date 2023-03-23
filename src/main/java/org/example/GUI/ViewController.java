@@ -7,14 +7,18 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.mariadb.jdbc.internal.com.read.resultset.SelectResultSet;
 
+import javax.swing.text.View;
 import java.util.ArrayList;
 
 public class ViewController {
     @FXML
-    Button executeButton;
+    Button searchButton;
     @FXML
-    TabPane tabs;
+    Tab tabs;
+    @FXML
+    Button executeButton;
     @FXML
     VBox content;
     @FXML
@@ -48,12 +52,53 @@ public class ViewController {
     boolean[] nullable;
     String[] tableNames;
     String[] keys;
+    ArrayList<String> primaryKeys;
 
     @FXML
     void initialize(){
         editableCheckBox.setOnAction(e -> setEditable());
         addButton.setOnAction(e -> addRow());
         executeButton.setOnAction(e -> sendCommand());
+        tabs.setOnSelectionChanged(e -> switchToSearch());
+        databaseBox.setOnAction(e -> setDatabaseKeysBox());
+        searchButton.setOnAction(e -> initSearch());
+    }
+    void switchToSearch(){
+        setDatabaseNamesBox();
+    }
+    void initSearch(){
+
+        String name, key, where;
+        if(databaseBox.getValue() != null) name = databaseBox.getValue().toString();
+        else name = "none";
+        if(keyBox.getValue() != null) key = keyBox.getValue().toString();
+        else key = "none";
+        where = keyInput.getText();
+
+        String command = "";
+        if(!name.equals("none")){
+            command+="SELECT ";
+            if(key.equals("none")){
+                command += "* FROM " + name;
+                System.out.println(command);
+                ViewHandler.get().execCommand(command);
+
+            }
+            else{
+                if(where.equals("")){
+                    command += key + " FROM " + name;
+                    System.out.println(command);
+                    ViewHandler.get().execCommand(command);
+
+                }
+                else{
+                    command += "* FROM " + name + " WHERE " + key + " = " + "'" + where + "'";
+                    System.out.println(command);
+                    ViewHandler.get().execCommand(command);
+
+                }
+            }
+        }
     }
 
     private void sendCommand(){
@@ -90,19 +135,25 @@ public class ViewController {
         setNewTable(testTable, nullTest);
         fill();
     }
-    void setComboBoxes(){ //Adds the values to the comboboxes of databses and keys
+    void setDatabaseNamesBox(){ //Adds the values to the comboboxes of databses and keys
         tableNames = ViewHandler.get().getTableNames();
         if(tableNames != null){
+            databaseBox.getItems().clear();
+
             for(int i = 0; i < tableNames.length; i++){
-                databaseBox.getItems().clear();
                 databaseBox.getItems().add(tableNames[i]);
             }
             databaseBox.setValue(databaseBox.getItems().get(0));
+        }
+    }
+    void setDatabaseKeysBox(){
+        if(tableNames != null && databaseBox.getValue() != null){
             databaseName.setText(databaseBox.getValue().toString());
             keys = ViewHandler.get().getKeys(databaseName.getText());
             if(keys != null){
+                keyBox.getItems().clear();
+                keyBox.getItems().add("none");
                 for(int i = 0; i < keys.length; i++){
-                    keyBox.getItems().clear();
                     keyBox.getItems().add(keys[i]);
                 }
                 keyBox.setValue(keyBox.getItems().get(0));
@@ -166,7 +217,7 @@ public class ViewController {
         }
 
         fields.clear();
-        int totalHeight = 0;
+        int totalHeight = 30;
         for(int i = 1; i < table.size(); i++){
             HBox row = new HBox();
             int rowHeight = 0;
@@ -214,6 +265,14 @@ public class ViewController {
         //It should do a check here, to see if there will be an error when parsing. We must therefore save the datatypes of each column.
         edited.get(y).set(x, fields.get(y-1).get(x).getText()); //plus ones to the first one, because there are the headers.
         ViewHandler.get().changeAt(x, y-1, fields.get(y-1).get(x).getText(), currentTable);
+        String table = currentTable;
+        String key = edited.get(0).get(x); //First line at x position
+
+        String primaryKey = "";
+        String where = ""; //Primary key = where id of that line
+        String command = "UPDATE " + table + " SET " + key + " WHERE " + primaryKey + "=" + "'" + where + "'";
+        System.out.println(command);
+        ViewHandler.get().execCommand(command);
         editChecks();
         current = edited;
     }

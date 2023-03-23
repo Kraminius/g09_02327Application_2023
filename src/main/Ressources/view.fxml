@@ -17,7 +17,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.GUI.ViewController">
    <children>
-      <TabPane fx:id="tabs" prefHeight="147.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="653.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane prefHeight="147.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="653.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
             <Tab id="Command" text="Command">
                <content>
@@ -53,7 +53,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab id="Journalist" text="Search">
+            <Tab id="Journalist" fx:id="tabs" text="Search">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -63,7 +63,7 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="1200.0" spacing="30.0">
                                        <children>
-                                          <Label id="Primary Keys" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="261.0" text="Database" textAlignment="CENTER">
+                                          <Label id="Primary Keys" fx:id="databaseName" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="261.0" text="Database" textAlignment="CENTER">
                                              <font>
                                                 <Font size="21.0" />
                                              </font>
@@ -86,6 +86,7 @@
                                                 <TextField fx:id="keyInput" prefHeight="25.0" prefWidth="46.0" />
                                              </children>
                                           </VBox>
+                                          <Button fx:id="searchButton" mnemonicParsing="false" text="Search" />
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
