@@ -82,11 +82,17 @@ public class ViewHandler {
             return;
         }
     }
+    public ArrayList<ArrayList<String>> getPrimaryKeys(){
+        return dataHandler.getPrimaryKeys();
+    }
     public void setDataHandler(DataHandler dh){
         dataHandler = dh;
     }
     public void execCommand(String command){
         dataHandler.execCommand(command);
+    }
+    public void execManipulation(String command){
+        dataHandler.manipulate(command);
     }
 
 }

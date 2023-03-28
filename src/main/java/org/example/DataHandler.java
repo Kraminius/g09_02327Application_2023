@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class DataHandler {
     OnlineDatabase database;
+    String getKeysCommand = "SELECT COLUMN_NAME, TABLE_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE CONSTRAINT_SCHEMA = 'mikkelju_tv3database' AND CONSTRAINT_NAME = 'PRIMARY';";
 
 
 
@@ -24,6 +25,12 @@ public class DataHandler {
             boolean[] bools = new boolean[output.get(0).size()];
             ViewHandler.get().showTable(output, bools);
         }
+    }
+    public void manipulate(String command){
+        database.manipulate(command);
+    }
+    public ArrayList<ArrayList<String>> getPrimaryKeys(){
+        return database.getTableWithCommand(getKeysCommand);
     }
     public String[] getTableNames(){
         ArrayList<ArrayList<String>> names = database.getTableWithCommand("Show Tables");

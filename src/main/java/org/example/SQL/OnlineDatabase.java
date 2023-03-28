@@ -56,8 +56,18 @@ public class OnlineDatabase {
         }catch (Exception e){
             System.out.println("Command Failed");
             e.getCause();
+            ArrayList<ArrayList<String>> failed = new ArrayList<>();
+            ArrayList<String> firstLine = new ArrayList<>();
+            ArrayList<String> secondLine = new ArrayList<>();
+            ArrayList<String> thirdLine = new ArrayList<>();
+            firstLine.add("Command Failed");
+            secondLine.add(e.getMessage());
+            thirdLine.add(e.getCause().toString());
+            failed.add(firstLine);
+            failed.add(secondLine);
+            failed.add(thirdLine);
+            return failed;
         }
-        return null;
     }
     public void manipulate(String command){
         try{

@@ -12,9 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.mariadb.jdbc.internal.com.read.resultset.SelectResultSet;
 
-import javax.swing.text.View;
 import java.util.ArrayList;
 
 public class ViewController {
@@ -22,6 +20,8 @@ public class ViewController {
     Button searchButton;
     @FXML
     Tab tabs;
+    @FXML
+    Tab commandTab;
     @FXML
     Button executeButton;
     @FXML
@@ -57,7 +57,10 @@ public class ViewController {
     boolean[] nullable;
     String[] tableNames;
     String[] keys;
-    ArrayList<String> primaryKeys;
+    String primaryKey;
+    ArrayList<ArrayList<String>> primaryKeys;
+    String lastSearchCommand;
+
 
     @FXML
     void initialize(){
@@ -65,11 +68,22 @@ public class ViewController {
         addButton.setOnAction(e -> addRow());
         executeButton.setOnAction(e -> sendCommand());
         tabs.setOnSelectionChanged(e -> switchToSearch());
+        commandTab.setOnSelectionChanged(e -> switchCommand());
         databaseBox.setOnAction(e -> setDatabaseKeysBox());
         searchButton.setOnAction(e -> initSearch());
+        switchCommand();
+    }
+    void switchCommand(){
+        editableCheckBox.setDisable(true);
+        editableCheckBox.setSelected(false);
     }
     void switchToSearch(){
+        editableCheckBox.setDisable(false);
         setDatabaseNamesBox();
+        getPrimaryKeys();
+    }
+    void getPrimaryKeys(){
+        primaryKeys = ViewHandler.get().getPrimaryKeys();
     }
     void initSearch(){
 
@@ -104,6 +118,7 @@ public class ViewController {
                 }
             }
         }
+        lastSearchCommand = command;
     }
 
     private void sendCommand(){
@@ -111,7 +126,12 @@ public class ViewController {
     }
     private void setEditable(){
         editable = editableCheckBox.selectedProperty().get();
-        fill();
+        try{
+            fill();
+        }catch(Exception e){
+            System.out.println("No Table Selected");
+        }
+
     }
     public void setError(String text){
         errorLabel.setText(text);
@@ -201,6 +221,7 @@ public class ViewController {
         headers.getChildren().clear();
         content.getChildren().clear();
         ArrayList<String> firstLine = table.get(0);
+        primaryKey = table.get(0).get(0);
         int totalWidth = 0;
         int[] widths = new int[firstLine.size()];
         //Creates the boxes and text for the first line, along with getting the size of the different columns.
@@ -214,7 +235,12 @@ public class ViewController {
             totalWidth += width;
             widths[i] = width;
             Label label = new Label(" " + text);
-            label.setStyle("-fx-text-fill: #eeeeee");
+            label.setStyle("-fx-text-fill: #eeeeee; -fx-opacity: 0.8");
+            for(int j = 0; j < primaryKeys.size(); j++){
+                if(primaryKeys.get(j).get(0).equals(text)){
+                    label.setStyle(label.getStyle() + "; -fx-opacity: 1");
+                }
+            }
             element.setStyle("-fx-border-color: #cccccc; -fx-background-color: #1f9fce");
             element.setAlignment(Pos.CENTER_LEFT);
             element.getChildren().add(label);
@@ -270,14 +296,36 @@ public class ViewController {
         //It should do a check here, to see if there will be an error when parsing. We must therefore save the datatypes of each column.
         edited.get(y).set(x, fields.get(y-1).get(x).getText()); //plus ones to the first one, because there are the headers.
         ViewHandler.get().changeAt(x, y-1, fields.get(y-1).get(x).getText(), currentTable);
-        String table = currentTable;
-        String key = edited.get(0).get(x); //First line at x position
+        String table = databaseBox.getValue().toString();
+        String key = current.get(0).get(x); //First line at x position
+        String newText = fields.get(y-1).get(x).getText();
 
-        String primaryKey = "";
-        String where = ""; //Primary key = where id of that line
-        String command = "UPDATE " + table + " SET " + key + " WHERE " + primaryKey + "=" + "'" + where + "'";
+        ArrayList<String> primaryKeysAndValues = new ArrayList<>(); //Makes an array of the primary keys and their current values
+        for(int i = 0; i < primaryKeys.size(); i++){
+            if(primaryKeys.get(i).get(1).equals(table)){ //Only check the primary keys of the current table
+                String primary = primaryKeys.get(i).get(0); //make a string of that primary key
+                primaryKeysAndValues.add(primary); //add the primary key to the arrayList
+                for(int j = 0; j < current.get(0).size(); j++){
+                    if(current.get(0).get(j).equals(primary)){ //Search for the position of the primary key in the shown list.
+                        String primaryValue = fields.get(y-1).get(j).getText(); //Get the current input at the line
+                        primaryKeysAndValues.add(primaryValue); //Add that value
+                        break;
+                    }
+
+                }
+            }
+        }
+        String command = "UPDATE " + table + " SET " + key + " = '" + newText + "' WHERE ";
+        for(int i = 0; i < primaryKeysAndValues.size(); i+=2){
+            if(i != 0) command += " AND ";
+            command += primaryKeysAndValues.get(i);
+            command += " = '";
+            command += primaryKeysAndValues.get(i+1);
+            command += "'";
+        }
+        command += ";";
         System.out.println(command);
-        ViewHandler.get().execCommand(command);
+        ViewHandler.get().execManipulation(command);
         editChecks();
         current = edited;
     }
