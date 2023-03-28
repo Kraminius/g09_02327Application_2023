@@ -48,6 +48,7 @@ public class ViewController {
     TextArea command;
     @FXML
     Label errorLabel;
+    int currentTab = 0;
 
     boolean editable = false;
     String currentTable = "";
@@ -76,11 +77,13 @@ public class ViewController {
     void switchCommand(){
         editableCheckBox.setDisable(true);
         editableCheckBox.setSelected(false);
+        currentTab = 0;
     }
     void switchToSearch(){
         editableCheckBox.setDisable(false);
         setDatabaseNamesBox();
         getPrimaryKeys();
+        currentTab = 1;
     }
     void getPrimaryKeys(){
         primaryKeys = ViewHandler.get().getPrimaryKeys();
@@ -236,9 +239,11 @@ public class ViewController {
             widths[i] = width;
             Label label = new Label(" " + text);
             label.setStyle("-fx-text-fill: #eeeeee; -fx-opacity: 0.8");
-            for(int j = 0; j < primaryKeys.size(); j++){
-                if(primaryKeys.get(j).get(0).equals(text)){
-                    label.setStyle(label.getStyle() + "; -fx-opacity: 1");
+            if(currentTab == 1){
+                for(int j = 0; j < primaryKeys.size(); j++){
+                    if(primaryKeys.get(j).get(0).equals(text)){
+                        label.setStyle(label.getStyle() + "; -fx-opacity: 1");
+                    }
                 }
             }
             element.setStyle("-fx-border-color: #cccccc; -fx-background-color: #1f9fce");
