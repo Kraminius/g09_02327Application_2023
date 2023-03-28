@@ -315,12 +315,15 @@ public class ViewController {
                 }
             }
         }
+        table = convert(table);
+        key = convert(key);
+        newText = convert(newText);
         String command = "UPDATE " + table + " SET " + key + " = '" + newText + "' WHERE ";
         for(int i = 0; i < primaryKeysAndValues.size(); i+=2){
             if(i != 0) command += " AND ";
-            command += primaryKeysAndValues.get(i);
+            command += convert(primaryKeysAndValues.get(i));
             command += " = '";
-            command += primaryKeysAndValues.get(i+1);
+            command += convert(primaryKeysAndValues.get(i+1));
             command += "'";
         }
         command += ";";
@@ -342,7 +345,15 @@ public class ViewController {
             }
         }
     }
-
+    String convert(String text){
+        String[] textArr = text.split("'");
+        String converted = "";
+        for(int i = 0; i < textArr.length-1; i++){
+            converted += textArr[i] + "\\'";
+        }
+        converted += textArr[textArr.length-1];
+        return converted;
+    }
     private void sendData(){
         ViewHandler.get().sendData(current);
         //send current
