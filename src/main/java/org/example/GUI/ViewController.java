@@ -323,7 +323,17 @@ public class ViewController {
         table = convert(table);
         key = convert(key);
         newText = convert(newText);
-        String command = "UPDATE " + table + " SET " + key + " = '" + newText + "' WHERE ";
+        String command;
+        if(newText.equalsIgnoreCase("null")){
+            command = "UPDATE " + table + " SET " + key + " = " + newText + " WHERE ";
+        }
+        else if(newText.equalsIgnoreCase("")){
+            command = "UPDATE " + table + " SET " + key + " = " + "null" + " WHERE ";
+        }
+        else{
+            command = "UPDATE " + table + " SET " + key + " = '" + newText + "' WHERE ";
+        }
+        System.out.println(key);
         for(int i = 0; i < primaryKeysAndValues.size(); i+=2){
             if(i != 0) command += " AND ";
             command += convert(primaryKeysAndValues.get(i));
