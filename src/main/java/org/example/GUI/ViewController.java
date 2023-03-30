@@ -334,12 +334,27 @@ public class ViewController {
             command = "UPDATE " + table + " SET " + key + " = '" + newText + "' WHERE ";
         }
         System.out.println(key);
-        for(int i = 0; i < primaryKeysAndValues.size(); i+=2){
+        /*for(int i = 0; i < primaryKeysAndValues.size(); i+=2){
             if(i != 0) command += " AND ";
             command += convert(primaryKeysAndValues.get(i));
             command += " = '";
             command += convert(primaryKeysAndValues.get(i+1));
             command += "'";
+        }
+
+         */
+
+        for(int i = 0; i < primaryKeysAndValues.size(); ){
+            if (i > 0) command += " AND ";
+            command += convert(primaryKeysAndValues.get(i));
+            command += " = '";
+            if (i+1 < primaryKeysAndValues.size()) {
+                command += convert(primaryKeysAndValues.get(i+1));
+            } else {
+                command += "null";
+            }
+            command += "'";
+            i += 2;
         }
         command += ";";
         System.out.println(command);
