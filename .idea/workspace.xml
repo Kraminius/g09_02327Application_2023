@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="509c0f07-8854-4a40-80e2-20028eaaa2f3" name="Changes" comment="Man kan nu ændre dataen i tabellerne i Search Tabben, dog kan man ikke ændre den hvis de er en primary Key. Primary keys er markeret ved at de er lidt hvidere i headeren.">
+    <list default="true" id="509c0f07-8854-4a40-80e2-20028eaaa2f3" name="Changes" comment="csv file for assignment 8.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DataHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/SQL/OnlineDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/SQL/OnlineDatabase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +26,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="e831b597-5f1f-425d-a1f6-76e9f7e9fa47" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -46,20 +46,20 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tobia/OneDrive/Coding/javafx-sdk-19/lib&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mikju/OneDrive - Danmarks Tekniske Universitet/Dokumenter/DTU/Advanced_Programming/javafx-sdk-19.0.2.1/lib&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mikju\Documents\DTU\Indledende programmering\g09_02327Application_2023_2\src\main\Ressources" />
       <recent name="C:\Users\tobia\OneDrive\DTU\1. Semester\Introduktion til Programmering\g09_02327Application_2023\src\main\Ressources" />
       <recent name="C:\Users\tobia\OneDrive\DTU\1. Semester\Introduktion til Programmering\g09_02327Application_2023\src\main\Ressources\org.example" />
       <recent name="C:\Users\tobia\OneDrive\DTU\1. Semester\Introduktion til Programmering\g09_02327Application_2023\src\main" />
       <recent name="C:\Users\tobia\OneDrive\DTU\1. Semester\Introduktion til Programmering\g09_02327Application_2023\Ressources" />
-      <recent name="C:\Users\tobia\OneDrive\DTU\1. Semester\Introduktion til Programmering\g09_02327Application_2023\src\main\java\org\example\GUI" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.example.Old" />
@@ -69,7 +69,18 @@
     <configuration name="Run" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="g09_02327Application_2023" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\tobia\OneDrive\Coding\javafx-sdk-19\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\mikju\OneDrive - Danmarks Tekniske Universitet\Dokumenter\DTU\Advanced_Programming\javafx-sdk-19.0.2.1\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -90,9 +101,8 @@
       <workItem from="1679599943501" duration="41000" />
       <workItem from="1679653078099" duration="31000" />
       <workItem from="1679989601866" duration="2715000" />
-      <workItem from="1679994132478" duration="8879000" />
-      <workItem from="1680003509354" duration="17000" />
-      <workItem from="1680004832238" duration="473000" />
+      <workItem from="1679994132478" duration="8575000" />
+      <workItem from="1680007677789" duration="19553000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored Project">
       <created>1679384942013</created>
@@ -143,14 +153,28 @@
       <option name="project" value="LOCAL" />
       <updated>1679991774794</updated>
     </task>
-    <task id="LOCAL-00008" summary="Man kan nu ændre dataen i tabellerne i Search Tabben, dog kan man ikke ændre den hvis de er en primary Key. Primary keys er markeret ved at de er lidt hvidere i headeren.">
-      <created>1680003125610</created>
+    <task id="LOCAL-00008" summary="Added workspace.xml to gitignore">
+      <created>1680007840665</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1680003125610</updated>
+      <updated>1680007840665</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added constrains for command, if input is null or &quot;&quot;">
+      <created>1680012257199</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1680012257199</updated>
+    </task>
+    <task id="LOCAL-00010" summary="csv file for assignment 8.">
+      <created>1680180907082</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1680180907082</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,7 +200,9 @@
     <MESSAGE value="GUI update" />
     <MESSAGE value="Opdateret Imports i ViewController så det ikke skal gøre ved download af projekt." />
     <MESSAGE value="Man kan nu ændre dataen i tabellerne i Search Tabben, dog kan man ikke ændre den hvis de er en primary Key." />
-    <MESSAGE value="Man kan nu ændre dataen i tabellerne i Search Tabben, dog kan man ikke ændre den hvis de er en primary Key. Primary keys er markeret ved at de er lidt hvidere i headeren." />
-    <option name="LAST_COMMIT_MESSAGE" value="Man kan nu ændre dataen i tabellerne i Search Tabben, dog kan man ikke ændre den hvis de er en primary Key. Primary keys er markeret ved at de er lidt hvidere i headeren." />
+    <MESSAGE value="Added workspace.xml to gitignore" />
+    <MESSAGE value="Added constrains for command, if input is null or &quot;&quot;" />
+    <MESSAGE value="csv file for assignment 8." />
+    <option name="LAST_COMMIT_MESSAGE" value="csv file for assignment 8." />
   </component>
 </project>

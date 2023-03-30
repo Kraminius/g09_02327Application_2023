@@ -3,6 +3,7 @@ package org.example;
 import org.example.GUI.ViewHandler;
 import org.example.SQL.OnlineDatabase;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DataHandler {
@@ -48,4 +49,5 @@ public class DataHandler {
         }
         return keyArray;
     }
+    public ArrayList<String> getColumnTypes(String tableName) {return database.tableType(tableName); }
 }

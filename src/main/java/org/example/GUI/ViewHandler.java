@@ -91,6 +91,7 @@ public class ViewHandler {
     public void execCommand(String command){
         dataHandler.execCommand(command);
     }
+    public ArrayList<String> getColumnTypes(String table){ return dataHandler.getColumnTypes(table);}
     public void execManipulation(String command){
         dataHandler.manipulate(command);
     }

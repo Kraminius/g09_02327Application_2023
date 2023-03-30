@@ -26,6 +26,7 @@ public class OnlineDatabase {
     Connection dbConnection;
     Scanner scanner;
 
+
     public OnlineDatabase() {
         dbConnection = getConnection(url, username, password);
         scanner = new Scanner(System.in, "CP850");
@@ -68,6 +69,29 @@ public class OnlineDatabase {
             failed.add(thirdLine);
             return failed;
         }
+    }
+
+    public ArrayList<String> tableType(String table) {
+        ArrayList<String> coloumnTypes = null;
+        try {
+            Statement statement = dbConnection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM " + table);
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            coloumnTypes = new ArrayList<>();
+            int columnLenght = metaData.getColumnCount();
+
+            for (int i = 1; i <= columnLenght; i++) {
+                String coloumnType = metaData.getColumnTypeName(i);
+                coloumnTypes.add(coloumnType);
+            }
+        } catch (SQLException e) {
+            System.out.println("Command Failed");
+            e.getCause();
+            ArrayList<String> failed = new ArrayList<>();
+            failed.add("Command Failed");
+            return failed;
+        }
+        return coloumnTypes;
     }
     public void manipulate(String command){
         try{

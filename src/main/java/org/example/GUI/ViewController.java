@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.sql.JDBCType;
 import java.util.ArrayList;
 
 public class ViewController {
@@ -188,18 +189,33 @@ public class ViewController {
             }
         }
     }
-    void addRow(){
-        ArrayList<String> newLine = new ArrayList<>();
-        for(int i = 0; i < edited.get(0).size(); i++){
-            if(nullable[i]) newLine.add("null");
-            else newLine.add("");
+    void addRow() {
+        int rowLenght = current.get(0).size();
+        String emptyRow = "";
+        String table = databaseBox.getValue().toString();
+        ArrayList<String> tableType = ViewHandler.get().getColumnTypes(table);
 
+        String emptyRowCommand = "";
+        for (int i = 0; i < tableType.size(); i++) {
+            if (i > 0) {
+                emptyRow += ", ";
+            }
+            if (tableType.get(i).equals("VARCHAR")) {
+                emptyRow += "'p'";
+            }
+            if (tableType.get(i).equals("DECIMAL")) {
+                emptyRow += "0";
+            }
         }
-        edited.add(newLine);
-        editChecks();
-        current = edited;
-        fill();
+
+        emptyRowCommand = "INSERT INTO " + table + " VALUES (" + emptyRow + ")";
+        System.out.println(emptyRowCommand);
+
+        ViewHandler.get().execCommand(emptyRowCommand);
+
+
     }
+
     ArrayList<ArrayList<String>> copyArrayArray(ArrayList<ArrayList<String>> a){
         //Copies the values from a into b
         ArrayList<ArrayList<String>> b = new ArrayList<>();
@@ -298,6 +314,10 @@ public class ViewController {
         anchor.setPrefHeight(totalHeight);
     }
     public void edit(int x, int y){
+        getPrimaryKeys();
+        String tempPrimaryKey = current.get(current.size()-1).get(0);
+        String originalValue = current.get(y).get(x);
+
         //It should do a check here, to see if there will be an error when parsing. We must therefore save the datatypes of each column.
         edited.get(y).set(x, fields.get(y-1).get(x).getText()); //plus ones to the first one, because there are the headers.
         ViewHandler.get().changeAt(x, y-1, fields.get(y-1).get(x).getText(), currentTable);
@@ -313,10 +333,18 @@ public class ViewController {
                 for(int j = 0; j < current.get(0).size(); j++){
                     if(current.get(0).get(j).equals(primary)){ //Search for the position of the primary key in the shown list.
                         String primaryValue = fields.get(y-1).get(j).getText(); //Get the current input at the line
+                        if (newText.equalsIgnoreCase("") && x == j || newText.equalsIgnoreCase("null") && x==j) {
+                            if(ViewHandler.get().getColumnTypes(table).equals("VARCHAR")) {
+                                primaryValue = "change";
+                            }
+                            else if(ViewHandler.get().getColumnTypes(table).equals("DECIMAL")){
+                                primaryValue = "0";
+                            }
+                            newText = primaryValue; // Update newText based on primary key check
+                        }
                         primaryKeysAndValues.add(primaryValue); //Add that value
                         break;
                     }
-
                 }
             }
         }
@@ -324,42 +352,43 @@ public class ViewController {
         key = convert(key);
         newText = convert(newText);
         String command;
-        if(newText.equalsIgnoreCase("null")){
-            command = "UPDATE " + table + " SET " + key + " = " + newText + " WHERE ";
-        }
-        else if(newText.equalsIgnoreCase("")){
+        if(newText.equalsIgnoreCase("null") || newText.equalsIgnoreCase("")){
             command = "UPDATE " + table + " SET " + key + " = " + "null" + " WHERE ";
         }
         else{
             command = "UPDATE " + table + " SET " + key + " = '" + newText + "' WHERE ";
         }
-        System.out.println(key);
-        /*for(int i = 0; i < primaryKeysAndValues.size(); i+=2){
-            if(i != 0) command += " AND ";
-            command += convert(primaryKeysAndValues.get(i));
-            command += " = '";
-            command += convert(primaryKeysAndValues.get(i+1));
-            command += "'";
-        }
-
-         */
 
         for(int i = 0; i < primaryKeysAndValues.size(); ){
             if (i > 0) command += " AND ";
             command += convert(primaryKeysAndValues.get(i));
             command += " = '";
-            if (i+1 < primaryKeysAndValues.size()) {
-                command += convert(primaryKeysAndValues.get(i+1));
+            if (primaryKeysAndValues.get(i).equals(key)) {
+                command += convert(originalValue); // Use the original value in the WHERE clause
             } else {
-                command += "null";
+                if (i+1 < primaryKeysAndValues.size()) {
+                    command += convert(primaryKeysAndValues.get(i+1));
+                } else {
+                    command += "null";
+                }
             }
             command += "'";
             i += 2;
         }
+
+        // Check if newText is empty and set it to a default value based on the column type
+        if (newText.isEmpty()) {
+            if (ViewHandler.get().getColumnTypes(table).equals("VARCHAR")) {
+                newText = "change";
+            } else if (ViewHandler.get().getColumnTypes(table).equals("DECIMAL")) {
+                newText = "0";
+            }
+        }
+
+        command = command.replace(" = null", " = '" + newText + "'"); // Replace null with the default value
         command += ";";
         System.out.println(command);
         ViewHandler.get().execManipulation(command);
-        editChecks();
         current = edited;
     }
     void editChecks(){
