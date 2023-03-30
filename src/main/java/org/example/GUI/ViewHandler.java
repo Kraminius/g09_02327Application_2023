@@ -8,6 +8,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.example.DataHandler;
 import org.example.Main;
+import org.example.filereading.InsertFile;
+import org.example.filereading.UPDATE;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,10 @@ public class ViewHandler {
     }
     public void start(){
         createWindow();
+        InsertFile file = new InsertFile();
+        file.getData();
+        UPDATE update = new UPDATE(file.getFR());
+        update.updateDB();
     }
 
     private void createWindow(){
@@ -94,6 +100,9 @@ public class ViewHandler {
     public ArrayList<String> getColumnTypes(String table){ return dataHandler.getColumnTypes(table);}
     public void execManipulation(String command){
         dataHandler.manipulate(command);
+    }
+    public ArrayList<ArrayList<String>> getOutput(String command){
+        return dataHandler.getOutput(command);
     }
 
 }

@@ -4,12 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 public class Footage {
     private final String title;
-    private final Date date;
+    private final Integer date;
     private final Integer duration;
-    private final Integer footageID;
+    private final String employeeNumber;
 
-    public Footage(Integer footageID, String title, Date date, Integer duration) {
-        this.footageID = footageID;
+    public Footage(String title, Integer date, Integer duration, String employeeNumber) {
+        this.employeeNumber = employeeNumber;
         this.title = title;
         this.date = date;
         this.duration = duration;
@@ -18,12 +18,12 @@ public class Footage {
     public String getTitle() {
         return title;
     }
-    public Date getDate() { return date; }
+    public Integer getDate() { return date; }
     public Integer getDuration() {
         return duration;
     }
-    public Integer getFootageID() {
-        return footageID;
+    public String getEmployeeNumber() {
+        return employeeNumber;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Footage {
         final String D = ";";
         final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMdd");
 
-        return getTitle() +D + dateFormatter.format(getDate()) +D + getDuration();
+        return getTitle() +D + date +D + getDuration();
     }
 
 }

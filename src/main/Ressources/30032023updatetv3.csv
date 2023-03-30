@@ -12,6 +12,6 @@ FootageID;Title;PublishingDate;EmployeeNumber;Lenght;CPR;First_Name;Last_Name;St
 11;News Clip 11;20220111;J011;90;7890123456;Daniel;Lopez;Willow St.;456;Denver;80201;USA
 12;News Clip 12;20220112;J012;120;3456789012;Grace;Hernandez;Magnolia St.;789;Phoenix;85001;USA
 13;News Clip 13;20220113;J013;60;9012345678;Kevin;Gupta;Ash St.;123;Washington D.C.;20001;USA
-14;Unknown Event;20220214;J014;75;;;;;;;;
-15;Unknown Event;20220215;J015;90;;;;;;;;
-16;Unknown Event;20220216;J016;120;;;;;;;;
+14;News Clip 14;20220214;J014;75;9012345778;Kevin;Geika;Ash St.;123;Washington D.C.;20001;USA
+15;News Clip 15;20220215;J015;90;3456689012;Grace;Reynolds;Magnolia St.;789;Phoenix;85001;USA
+16;News Clip 16;20220216;J016;120;5789012345;Ryan;Grumpy;Spruce St.;789;Atlanta;30301;USA

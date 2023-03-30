@@ -59,14 +59,8 @@ public class OnlineDatabase {
             e.getCause();
             ArrayList<ArrayList<String>> failed = new ArrayList<>();
             ArrayList<String> firstLine = new ArrayList<>();
-            ArrayList<String> secondLine = new ArrayList<>();
-            ArrayList<String> thirdLine = new ArrayList<>();
-            firstLine.add("Command Failed");
-            secondLine.add(e.getMessage());
-            thirdLine.add(e.getCause().toString());
+            firstLine.add("ERROR:" + e.getMessage());
             failed.add(firstLine);
-            failed.add(secondLine);
-            failed.add(thirdLine);
             return failed;
         }
     }
@@ -98,7 +92,6 @@ public class OnlineDatabase {
             Statement statement = dbConnection.createStatement();
             ResultSet resultSet = statement.executeQuery(command);
         }catch (Exception e){
-            System.out.println("Command Failed");
             e.getCause();
         }
     }

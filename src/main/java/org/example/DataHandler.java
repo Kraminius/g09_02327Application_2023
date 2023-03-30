@@ -27,6 +27,10 @@ public class DataHandler {
             ViewHandler.get().showTable(output, bools);
         }
     }
+    public ArrayList<ArrayList<String>> getOutput(String command){
+        ArrayList<ArrayList<String>> output = database.getTableWithCommand(command);
+        return output;
+    }
     public void manipulate(String command){
         database.manipulate(command);
     }
