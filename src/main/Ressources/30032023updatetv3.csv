@@ -1,0 +1,17 @@
+FootageID;Title;PublishingDate;EmployeeNumber;Lenght;CPR;First_Name;Last_Name;Street_Name;Civic_Number;City;ZIP;Country
+1;News Clip 1;20220101;J001;60;1234567890;John;Doe;Main St.;123;New York;10001;USA
+2;News Clip 2;20220102;J002;90;9876543210;Jane;Smith;High St.;456;Los Angeles;90001;USA
+3;News Clip 3;20220103;J003;120;4567890123;Bob;Johnson;Oak St.;789;Chicago;60601;USA
+4;News Clip 4;20220104;J004;75;5678901234;Sarah;Lee;Elm St.;101;Houston;77001;USA
+5;News Clip 5;20220105;J005;90;2345678901;Michael;Wong;Maple St.;456;San Francisco;94101;USA
+6;News Clip 6;20220106;J006;120;8901234567;Emily;Chen;Pine St.;789;Boston;02101;USA
+7;News Clip 7;20220107;J007;60;3456789012;David;Garcia;Birch St.;123;Miami;33101;USA
+8;News Clip 8;20220108;J008;90;9012345678;Amy;Davis;Cedar St.;456;Seattle;98101;USA
+9;News Clip 9;20220109;J009;120;6789012345;Ryan;Nguyen;Spruce St.;789;Atlanta;30301;USA
+10;News Clip 10;20220110;J010;60;1234509876;Jessica;Kim;Sycamore St.;101;Dallas;75201;USA
+11;News Clip 11;20220111;J011;90;7890123456;Daniel;Lopez;Willow St.;456;Denver;80201;USA
+12;News Clip 12;20220112;J012;120;3456789012;Grace;Hernandez;Magnolia St.;789;Phoenix;85001;USA
+13;News Clip 13;20220113;J013;60;9012345678;Kevin;Gupta;Ash St.;123;Washington D.C.;20001;USA
+14;Unknown Event;20220214;J014;75;;;;;;;;
+15;Unknown Event;20220215;J015;90;;;;;;;;
+16;Unknown Event;20220216;J016;120;;;;;;;;
