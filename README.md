@@ -12,6 +12,7 @@ Choose an SDK to that OS and Architecture that matches your hardware and device.
 Download Project and open in IntelliJ
 Download the project from our github or use the project that is included in the submission. You can use this link to download the zim file of the project from GitHub.
 https://github.com/Kraminius/g09_02327Application_2023
+
 ![2023-03-31 00_19_17-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976773-a46e4d16-f57a-4ead-85dd-5e41c7efd29f.png)
 
 Press <>Code and choose Download Zip.
@@ -23,6 +24,7 @@ File > New > New Project From Existing Source
 Then navigate to the project and open. 
 
 On the right side of the screen near the bottom a popup might show up, just press Load. It will load the maven build script..
+
 ![2023-03-31 00_19_28-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976774-9380509f-1005-40fc-83f9-cee975c1050a.png)
 
 
