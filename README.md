@@ -1,9 +1,9 @@
-Configuration <br>
+<H2>Configuration</H2> <br>
 
 
 
 In this configuration guide you set up our project in IntelliJ and with JavaFX that is needed to show our GUI.
-JavaFX SDK 
+<H3>JavaFX SDK </H3>
 Make sure you have a JavaFX SDK installed, if you already have an SDK installed of JavaFX of version 19 or later, then you can skip this step. Otherwise use the link below to download one. Also remember where you save it, as we will need the path later on.
 https://gluonhq.com/products/javafx/ 
 ![2023-03-31 00_18_36-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976768-93be4eb5-fede-4b43-84f0-2773c547febe.png)
@@ -28,7 +28,7 @@ On the right side of the screen near the bottom a popup might show up, just pres
 ![2023-03-31 00_19_28-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976774-9380509f-1005-40fc-83f9-cee975c1050a.png)
 
 
-Setup Modules
+<H3>Setup Modules </H3>
 Go to the top left corner and press File > Project Structure > Modules
 Open the folder “src” and “main” so you can see the “Resources” folder. Mark it by pressing it and afterward press the Mark as “Ressources” as shown below.
 Then press Apply and ok.
@@ -38,7 +38,7 @@ Then press Apply and ok.
 
 
 
-Setup Configurations
+<H3>Setup Configurations </H3>
 In the top right corner click “Current File” and “Edit Configurations”.
 ![2023-03-31 00_19_52-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976778-8747939e-7d83-4792-9742-a867c41bf818.png)
 
@@ -82,7 +82,7 @@ Press the icon of a document at “Main Class” and choose Main (org.example) a
 
 Now Press Apply and OK.
 
-Setup Libraries
+<H3>Setup Libraries </H3>
 Now go to File > Project Structure > Libraries
 And then the plus icon and new Project Library Java.
 
