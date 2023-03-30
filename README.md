@@ -42,11 +42,13 @@ In the top right corner click “Current File” and “Edit Configurations”.
 
 
 Press the plus icon in the top left corner of this new screen and press Application.
+
 ![2023-03-31 00_19_59-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976780-2f56b48c-3f06-4514-b72f-64bb95f97d33.png)
 
 
 On the top of your screen you can rename the application, in this example i renamed it to “Run”. 
 After this press “Modify Options” and “Add VM options”.
+
 ![2023-03-31 00_20_08-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976784-c1f09630-a64e-4544-b51c-674bfa066946.png)
 
 
@@ -56,32 +58,41 @@ If you are on a mac or Linux computer then paste this:
 Or if you are on windows use this:
 --module-path "\path\to\javafx-sdk-20\lib" --add-modules javafx.controls,javafx.fxml
 Paste and switch out the marked part with the path of your “lib” folder of your javaFX SDK. How to do so is also shown in next step.
+
 ![2023-03-31 00_20_16-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976786-0cdacf81-2ad6-40c9-9c01-f93a2bdc9682.png)
 
 
 
 Find your SDK through your file explorer and open until you reach your “lib” folder, then press your path and copy it. Mine looks like this:
+
 ![2023-03-31 00_20_29-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976789-cdd70b35-29e7-4c56-8c6a-450dd06184ce.png)
 
 
 Paste the line into the VM options instead of “\path\to\javafx-sdk-20\lib”.
 Choose a module by pressing “-cp no module” and choose “g09_02327Application_2023”
+
 ![2023-03-31 00_20_37-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976790-5852ea71-2496-4a3a-8803-e2b8bb791833.png)
 
 
 Press the icon of a document at “Main Class” and choose Main (org.example) and press ok.
+
 ![2023-03-31 00_20_46-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976791-cf6673d8-445d-44d4-a69c-81ad4b79667a.png)
+
 Now Press Apply and OK.
 
 Setup Libraries
 Now go to File > Project Structure > Libraries
 And then the plus icon and new Project Library Java.
+
 ![2023-03-31 00_20_53-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976793-26d77d2e-8612-4489-b2ca-253521a27142.png)
 
 
 Paste your path of your library folder again here.
+
 ![2023-03-31 00_20_59-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976794-9258698a-8be7-4477-a313-aa903ce7359d.png)
 
 Choose module and press OK.
+
 ![2023-03-31 00_21_26-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976795-e9e51df6-1f2f-4508-a4cb-7e2913c2a981.png)
+
 Then press Apply and OK
