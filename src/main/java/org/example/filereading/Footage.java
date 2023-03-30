@@ -1,4 +1,4 @@
-package org.example.hjælpefiler;
+package org.example.filereading;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,8 +6,10 @@ public class Footage {
     private final String title;
     private final Date date;
     private final Integer duration;
+    private final Integer footageID;
 
-    public Footage(String title, Date date, Integer duration) {
+    public Footage(Integer footageID, String title, Date date, Integer duration) {
+        this.footageID = footageID;
         this.title = title;
         this.date = date;
         this.duration = duration;
@@ -19,6 +21,9 @@ public class Footage {
     public Date getDate() { return date; }
     public Integer getDuration() {
         return duration;
+    }
+    public Integer getFootageID() {
+        return footageID;
     }
 
     @Override
