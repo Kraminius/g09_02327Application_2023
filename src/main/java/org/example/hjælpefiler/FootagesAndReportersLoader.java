@@ -6,6 +6,8 @@ package org.example.hjælpefiler; /**
  *
  */
 
+import org.example.filereading.FootageAndReporter;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -60,8 +62,8 @@ public class FootagesAndReportersLoader {
 						Integer civicNumber = Integer.valueOf(values.get(7));
 						Integer zipCode  = Integer.valueOf(values.get(8));
 						String country = values.get(9);
-						FootageAndReporter far = new FootageAndReporter(title, date, duration, cpr, firstName, lastName, streetName, civicNumber, zipCode, country);
-						farList.add(far);
+						//FootageAndReporter far = new FootageAndReporter(title, date, duration, cpr, firstName, lastName, streetName, civicNumber, zipCode, country);
+						//farList.add(far);
 					} else
 						throw new IOException("Invalid number of values on line " +lineNbr +". expected " +NUMBER_OF_FIELDS_EXPECTED +" values, found " +values.size());
 		    	}
