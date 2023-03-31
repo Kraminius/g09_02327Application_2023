@@ -100,7 +100,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab id="Quiries" fx:id="queriesTab" text="Quiries">
+            <Tab id="Quiries" fx:id="queriesTab" text="Query">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -110,7 +110,7 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="1200.0" spacing="30.0">
                                        <children>
-                                          <Label id="Quries" fx:id="databaseName1" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="261.0" text="Quries" textAlignment="CENTER">
+                                          <Label id="Quries" fx:id="databaseName1" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="261.0" text="Queries" textAlignment="CENTER">
                                              <font>
                                                 <Font size="21.0" />
                                              </font>

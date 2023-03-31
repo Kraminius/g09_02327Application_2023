@@ -305,7 +305,7 @@ public class ViewController {
                 emptyRow += "0";
             }
         }
-
+        System.out.println(tableType);
         emptyRowCommand = "INSERT INTO " + table + " VALUES (" + emptyRow + ")";
         System.out.println(emptyRowCommand);
 
