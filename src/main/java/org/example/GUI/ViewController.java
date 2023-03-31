@@ -349,6 +349,11 @@ public class ViewController {
             element.getChildren().add(label);
             headers.getChildren().add(element);
         }
+        if(currentTab == 1){
+            Button filler = new Button("X");
+            filler.setOpacity(0);
+            headers.getChildren().add(filler);
+        }
 
         fields.clear();
         int totalHeight = 30;
@@ -380,6 +385,13 @@ public class ViewController {
 
                 if(height > rowHeight) rowHeight = height;
             }
+            if(currentTab == 1){
+                Button deleteButton = new Button("x");
+                int y = i;
+                deleteButton.setOnAction(e -> deleteAt(y));
+                deleteButton.setPrefSize(0, rowHeight);
+                row.getChildren().add(deleteButton);
+            }
             fields.add(fieldLine);
             row.setPrefHeight(rowHeight);
             totalHeight+=rowHeight+10;
@@ -395,6 +407,54 @@ public class ViewController {
         anchor.setPrefWidth(totalWidth);
         anchor.setPrefHeight(totalHeight);
     }
+    public void deleteAt(int y){
+        if(currentTab != 1) return;
+        String tableName = databaseBox.getValue().toString();
+        String command = "DELETE FROM " + tableName + " WHERE ";
+        ArrayList<String> dataTypes = ViewHandler.get().getColumnTypes(tableName);
+        ArrayList<String> primaryKeysAndValues = new ArrayList<>(); //Makes an array of the primary keys and their current values
+        for(int i = 0; i < primaryKeys.size(); i++){
+            if(primaryKeys.get(i).get(1).equals(tableName)){ //Only check the primary keys of the current table
+                String primary = primaryKeys.get(i).get(0); //make a string of that primary key
+                primaryKeysAndValues.add(primary); //add the primary key to the arrayList
+                for(int j = 0; j < current.get(0).size(); j++){
+                    if(current.get(0).get(j).equals(primary)){ //Search for the position of the primary key in the shown list.
+                        String primaryValue = fields.get(y-1).get(j).getText(); //Get the current input at the line
+                        primaryKeysAndValues.add(primaryValue); //Add that value
+                        primaryKeysAndValues.add(dataTypes.get(j)); //Adds the type of that value
+                        break;
+                    }
+                }
+            }
+        }
+
+        for(int i = 0; i < primaryKeysAndValues.size(); i++){
+            if (i > 0) command += " AND ";
+            command += convert(primaryKeysAndValues.get(i));
+            if (i+2 < primaryKeysAndValues.size()) {
+                if(primaryKeysAndValues.get(i+2).equals("VARCHAR")){
+                    command += " = '";
+                }
+                else{
+                    command += " = ";
+                }
+                command += convert(primaryKeysAndValues.get(i+1));
+                if(primaryKeysAndValues.get(i+2).equals("VARCHAR")){
+                    command += "'";
+                }
+            } else {
+                command += "= null";
+            }
+
+            i +=2;
+        }
+
+        System.out.println(command);
+        ViewHandler.get().execManipulation(command);
+        current = edited;
+        initSearch();
+
+    }
     public void edit(int x, int y){
         getPrimaryKeys();
         String tempPrimaryKey = current.get(current.size()-1).get(0);
@@ -406,7 +466,7 @@ public class ViewController {
         String table = databaseBox.getValue().toString();
         String key = current.get(0).get(x); //First line at x position
         String newText = fields.get(y-1).get(x).getText();
-
+        ArrayList<String> dataTypes = ViewHandler.get().getColumnTypes(table);
         ArrayList<String> primaryKeysAndValues = new ArrayList<>(); //Makes an array of the primary keys and their current values
         for(int i = 0; i < primaryKeys.size(); i++){
             if(primaryKeys.get(i).get(1).equals(table)){ //Only check the primary keys of the current table
@@ -425,6 +485,8 @@ public class ViewController {
                             newText = primaryValue; // Update newText based on primary key check
                         }
                         primaryKeysAndValues.add(primaryValue); //Add that value
+                        primaryKeysAndValues.add(dataTypes.get(j)); //Adds the type of that value
+
                         break;
                     }
                 }
@@ -441,21 +503,25 @@ public class ViewController {
             command = "UPDATE " + table + " SET " + key + " = '" + newText + "' WHERE ";
         }
 
-        for(int i = 0; i < primaryKeysAndValues.size(); ){
+        for(int i = 0; i < primaryKeysAndValues.size(); i++){
             if (i > 0) command += " AND ";
             command += convert(primaryKeysAndValues.get(i));
-            command += " = '";
-            if (primaryKeysAndValues.get(i).equals(key)) {
-                command += convert(originalValue); // Use the original value in the WHERE clause
-            } else {
-                if (i+1 < primaryKeysAndValues.size()) {
-                    command += convert(primaryKeysAndValues.get(i+1));
-                } else {
-                    command += "null";
+            if (i+2 < primaryKeysAndValues.size()) {
+                if(primaryKeysAndValues.get(i+2).equals("VARCHAR")){
+                    command += " = '";
                 }
+                else{
+                    command += " = ";
+                }
+                command += convert(primaryKeysAndValues.get(i+1));
+                if(primaryKeysAndValues.get(i+2).equals("VARCHAR")){
+                    command += "'";
+                }
+            } else {
+                command += "= null";
             }
-            command += "'";
-            i += 2;
+
+            i +=2;
         }
 
         // Check if newText is empty and set it to a default value based on the column type
