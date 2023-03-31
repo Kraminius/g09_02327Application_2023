@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="509c0f07-8854-4a40-80e2-20028eaaa2f3" name="Changes" comment="Commands can fail and refresh after">
+    <list default="true" id="509c0f07-8854-4a40-80e2-20028eaaa2f3" name="Changes" comment="Changed spelling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Ressources/view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Ressources/view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +91,7 @@
       <workItem from="1679582747296" duration="278000" />
       <workItem from="1679601330259" duration="1070000" />
       <workItem from="1680206775800" duration="2953000" />
-      <workItem from="1680257744866" duration="2868000" />
+      <workItem from="1680257744866" duration="5436000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored Project">
       <created>1679384942013</created>
@@ -127,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679410953127</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Changed spelling">
+      <created>1680260889903</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680260889903</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +158,7 @@
     <MESSAGE value="GUI Created" />
     <MESSAGE value="So ehm. SQL Commando prompt works now." />
     <MESSAGE value="Commands can fail and refresh after" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commands can fail and refresh after" />
+    <MESSAGE value="Changed spelling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed spelling" />
   </component>
 </project>

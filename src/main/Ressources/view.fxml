@@ -17,7 +17,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.GUI.ViewController">
    <children>
-      <TabPane prefHeight="147.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="653.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane minWidth="-Infinity" prefHeight="178.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="622.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
             <Tab id="Command" fx:id="commandTab" text="Command">
                <content>
@@ -55,7 +55,7 @@
             </Tab>
             <Tab id="Search" fx:id="tabs" text="Search">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <VBox alignment="TOP_CENTER" pickOnBounds="false" prefHeight="92.0" prefWidth="1200.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -102,11 +102,11 @@
             </Tab>
             <Tab id="Quiries" fx:id="queriesTab" text="Query">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="140.0" prefWidth="1200.0">
                      <children>
                         <VBox alignment="TOP_CENTER" pickOnBounds="false" prefHeight="92.0" prefWidth="1200.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <VBox prefHeight="130.0" prefWidth="1200.0">
+                              <VBox prefHeight="114.0" prefWidth="1200.0">
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="1200.0" spacing="30.0">
                                        <children>
@@ -127,7 +127,7 @@
                                           <Insets bottom="5.0" left="20.0" right="20.0" top="20.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Label fx:id="qCommand" alignment="CENTER" prefHeight="65.0" prefWidth="1200.0" textAlignment="CENTER" wrapText="true" />
+                                    <Label fx:id="qCommand" alignment="CENTER" prefHeight="34.0" prefWidth="1200.0" textAlignment="CENTER" wrapText="true" />
                                  </children>
                               </VBox>
                            </children>
@@ -138,9 +138,9 @@
             </Tab>
         </tabs>
       </TabPane>
-      <VBox alignment="TOP_CENTER" layoutY="153.0" maxHeight="-Infinity" prefHeight="647.0" prefWidth="1200.0" spacing="20.0">
+      <VBox alignment="TOP_CENTER" layoutY="178.0" maxHeight="-Infinity" prefHeight="622.0" prefWidth="1200.0" spacing="20.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="1200.0" spacing="20.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="1200.0" spacing="20.0">
                <children>
                   <CheckBox fx:id="editableCheckBox" mnemonicParsing="false" text="Editable" />
                   <Button fx:id="addButton" mnemonicParsing="false" text="AddRow" />

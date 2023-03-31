@@ -130,41 +130,25 @@ public class ViewController {
         qNames.add("Underperforming Topics");
         qCommands.add("SELECT t.Title, SUM(i.ViewCount) AS TotalViews FROM Topic t JOIN Item i ON t.Title = i.TopicTitle GROUP BY t.Title HAVING TotalViews < (SELECT AVG(ViewSum) FROM (SELECT SUM(i.ViewCount) AS ViewSum FROM Item i GROUP BY i.TopicTitle ORDER BY i.ViewCount) AS AvgTable)");
 
-        // Identifying journalists who were both curators and reporters, having shot at least a footage that was used for a news item on a topic they curated.
-        qNames.add("Manager1");
-        qCommands.add("SELECT DISTINCT j.First_Name, j.Last_Name FROM Journalist j JOIN Curator c ON j.EmployeeNumber = c.EmployeeNumber JOIN Footage f ON j.EmployeeNumber = f.EmployeeNumber JOIN FootageHandler fh ON f.Title = fh.Title AND f.PublishingDate = fh.PublishingDate JOIN Item i ON fh.ItemID = i.ItemID AND c.TopicTitle = i.TopicTitle");
+        // Items submitted each month. As our date has format yyyymmdd, we use the FROM_UNIXTIME(UNIX_TIMESTAMP(STR_TO_DATE)) functions to convert it, defining it has the format '%Y%m%d'
+        qNames.add("Items submitted each month");
+        qCommands.add("SELECT t.Title, YEAR(STR_TO_DATE(i.PublishingDate, '%Y%m%d')) AS Year, MONTH(FROM_UNIXTIME(UNIX_TIMESTAMP(STR_TO_DATE(i.PublishingDate, '%Y%m%d')))) AS Month, COUNT(*) AS NumberOfItems FROM Item i JOIN Topic t ON i.TopicTitle = t.Title WHERE i.PublishingDate BETWEEN 20220101 AND 20221231 GROUP BY t.Title, Year, Month ORDER BY t.Title, Year, Month;");
 
         //Find the total length of footages for each journalist. (also those who didn't record any)
-        qNames.add("Footage To Length");
+        qNames.add("Footage Length Pr. Journalist");
         qCommands.add("SELECT j.First_Name, j.Last_Name, COALESCE(SUM(f.Length), 0) AS Total_Footage_Length FROM Journalist j LEFT JOIN Footage f ON j.EmployeeNumber = f.EmployeeNumber GROUP BY j.EmployeeNumber ORDER BY Total_Footage_Length DESC");
 
         //Show the top 5 journalists with the highest average number of views per item.
         qNames.add("Average Journalist ViewCount");
-        qCommands.add("SELECT j.First_Name, j.Last_Name, AVG(i.ViewCount) AS Average_Views FROM Journalist j JOIN Item i ON j.EmployeeNumber = i.EmployeeNumber GROUP BY j.EmployeeNumber ORDER BY Average_Views;");
+        qCommands.add("SELECT j.First_Name, j.Last_Name, AVG(i.ViewCount) AS Average_Views FROM Journalist j JOIN Item i ON j.EmployeeNumber = i.EmployeeNumber GROUP BY j.EmployeeNumber ORDER BY Average_Views");
 
-        //List all journalists who have not created any footages. (manager one hahah)
-        qNames.add("null Footage Journalists");
-        qCommands.add("SELECT j.First_Name, j.Last_Name FROM Journalist j LEFT JOIN Footage f ON j.EmployeeNumber = f.EmployeeNumber WHERE f.EmployeeNumber IS NULL;");
+        //List all journalists who have not created any footages. (manager one hahah).
+        qNames.add("Journalists with null footage");
+        qCommands.add("SELECT j.First_Name, j.Last_Name FROM Journalist j LEFT JOIN Footage f ON j.EmployeeNumber = f.EmployeeNumber WHERE f.EmployeeNumber IS NULL");
 
-        //
-        qNames.add("");
-        qCommands.add("");
-
-        //
-        qNames.add("");
-        qCommands.add("");
-
-        //
-        qNames.add("");
-        qCommands.add("");
-
-        //
-        qNames.add("");
-        qCommands.add("");
-
-        //
-        qNames.add("");
-        qCommands.add("");
+        //Totalview of each edition with Journalist name
+        qNames.add("TotalView Edition with J.name");
+        qCommands.add("SELECT e.BroadcastDate, e.BroadcastTime, e.EditionID, j.First_Name, j.Last_Name, SUM(i.ViewCount) AS Total_Views FROM Edition e JOIN Journalist j ON e.EmployeeNumber = j.EmployeeNumber JOIN Item i ON e.EditionID = i.EditionID GROUP BY e.BroadcastDate, e.BroadcastTime, e.EditionID ORDER BY Total_Views DESC");
 
         qComboBox.getItems().add("none");
         for(int i = 0; i < qNames.size(); i++){
