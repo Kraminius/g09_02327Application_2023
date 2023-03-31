@@ -513,7 +513,7 @@ public class ViewController {
                 else{
                     command += " = ";
                 }
-                command += convert(primaryKeysAndValues.get(i+1));
+                command += convert(originalValue);
                 if(primaryKeysAndValues.get(i+2).equals("VARCHAR")){
                     command += "'";
                 }
