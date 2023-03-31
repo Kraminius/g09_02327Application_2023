@@ -24,7 +24,15 @@ public class ViewController {
     @FXML
     Tab commandTab;
     @FXML
+    Tab queriesTab;
+    @FXML
+    Label qCommand;
+    @FXML
     Button executeButton;
+    @FXML
+    Button qExec;
+    @FXML
+    ComboBox qComboBox;
     @FXML
     VBox content;
     @FXML
@@ -62,6 +70,8 @@ public class ViewController {
     String primaryKey;
     ArrayList<ArrayList<String>> primaryKeys;
     String lastSearchCommand;
+    ArrayList<String> qCommands;
+    ArrayList<String> qNames;
 
 
     @FXML
@@ -71,23 +81,111 @@ public class ViewController {
         executeButton.setOnAction(e -> sendCommand());
         tabs.setOnSelectionChanged(e -> switchToSearch());
         commandTab.setOnSelectionChanged(e -> switchCommand());
+        queriesTab.setOnSelectionChanged(e -> switchToQueries());
         databaseBox.setOnAction(e -> setDatabaseKeysBox());
         searchButton.setOnAction(e -> initSearch());
+        qExec.setOnAction(e -> queryCommand(qComboBox.getValue().toString()));
+        initQueryCommands();
         switchCommand();
     }
     void switchCommand(){
         editableCheckBox.setDisable(true);
+        addButton.setDisable(true);
         editableCheckBox.setSelected(false);
         currentTab = 0;
     }
     void switchToSearch(){
         editableCheckBox.setDisable(false);
+        addButton.setDisable(false);
         setDatabaseNamesBox();
         getPrimaryKeys();
         currentTab = 1;
     }
+    void switchToQueries(){
+        editableCheckBox.setDisable(true);
+        addButton.setDisable(true);
+        editableCheckBox.setSelected(false);
+        currentTab = 2;
+    }
     void getPrimaryKeys(){
         primaryKeys = ViewHandler.get().getPrimaryKeys();
+    }
+    void initQueryCommands(){
+        qCommands = new ArrayList<>();
+        qNames = new ArrayList<>();
+
+        //Query for making a contact-list with first name, last name, telephone and mail.
+        qNames.add("Contact List");
+        qCommands.add( "SELECT First_Name, Last_Name, Telephone, Mail FROM Journalist LEFT JOIN EMAIL ON Journalist.EmployeeNumber = EMAIL.EmployeeNumber LEFT JOIN Telephone ON Journalist.EmployeeNumber = Telephone.EmployeeNumber WHERE Mail LIKE '%@tv3.dk'");
+
+        //Show reporters whose footages were never broadcasted in the morning (before 12:00).
+        qNames.add("No Broadcast < 1200");
+        qCommands.add("SELECT DISTINCT j.First_Name, j.Last_Name, j.EmployeeNumber FROM Journalist j WHERE NOT EXISTS (SELECT 1 FROM Edition e WHERE j.EmployeeNumber = e.EmployeeNumber AND e.BroadcastTime < 1200)");
+
+        //Show the top 10 hosts of editions that, overall, attracted the maximum number of views.
+        qNames.add("Max Views Edition");
+        qCommands.add("SELECT j.EmployeeNumber, j.First_Name, j.Last_Name, SUM(i.ViewCount) AS TotalViews FROM Journalist j JOIN Item i ON j.EmployeeNumber = i.EmployeeNumber GROUP BY j.EmployeeNumber ORDER BY TotalViews DESC LIMIT 10");
+
+        //Identifying which topics, overall, attracted less views than the average:
+        qNames.add("Underperforming Topics");
+        qCommands.add("SELECT t.Title, SUM(i.ViewCount) AS TotalViews FROM Topic t JOIN Item i ON t.Title = i.TopicTitle GROUP BY t.Title HAVING TotalViews < (SELECT AVG(ViewSum) FROM (SELECT SUM(i.ViewCount) AS ViewSum FROM Item i GROUP BY i.TopicTitle ORDER BY i.ViewCount) AS AvgTable)");
+
+        // Identifying journalists who were both curators and reporters, having shot at least a footage that was used for a news item on a topic they curated.
+        qNames.add("Manager1");
+        qCommands.add("SELECT DISTINCT j.First_Name, j.Last_Name FROM Journalist j JOIN Curator c ON j.EmployeeNumber = c.EmployeeNumber JOIN Footage f ON j.EmployeeNumber = f.EmployeeNumber JOIN FootageHandler fh ON f.Title = fh.Title AND f.PublishingDate = fh.PublishingDate JOIN Item i ON fh.ItemID = i.ItemID AND c.TopicTitle = i.TopicTitle");
+
+        //Find the total length of footages for each journalist. (also those who didn't record any)
+        qNames.add("Footage To Length");
+        qCommands.add("SELECT j.First_Name, j.Last_Name, COALESCE(SUM(f.Length), 0) AS Total_Footage_Length FROM Journalist j LEFT JOIN Footage f ON j.EmployeeNumber = f.EmployeeNumber GROUP BY j.EmployeeNumber ORDER BY Total_Footage_Length DESC");
+
+        //Show the top 5 journalists with the highest average number of views per item.
+        qNames.add("Average Journalist ViewCount");
+        qCommands.add("SELECT j.First_Name, j.Last_Name, AVG(i.ViewCount) AS Average_Views FROM Journalist j JOIN Item i ON j.EmployeeNumber = i.EmployeeNumber GROUP BY j.EmployeeNumber ORDER BY Average_Views;");
+
+        //List all journalists who have not created any footages. (manager one hahah)
+        qNames.add("null Footage Journalists");
+        qCommands.add("SELECT j.First_Name, j.Last_Name FROM Journalist j LEFT JOIN Footage f ON j.EmployeeNumber = f.EmployeeNumber WHERE f.EmployeeNumber IS NULL;");
+
+        //
+        qNames.add("");
+        qCommands.add("");
+
+        //
+        qNames.add("");
+        qCommands.add("");
+
+        //
+        qNames.add("");
+        qCommands.add("");
+
+        //
+        qNames.add("");
+        qCommands.add("");
+
+        //
+        qNames.add("");
+        qCommands.add("");
+
+        qComboBox.getItems().add("none");
+        for(int i = 0; i < qNames.size(); i++){
+            qComboBox.getItems().add(qNames.get(i));
+        }
+        qComboBox.setValue(qComboBox.getItems().get(0));
+    }
+    void queryCommand(String query){
+        if(query.equals("none")) {
+            qCommand.setText("");
+            return;
+        }
+        String command = "";
+        for(int i = 0; i < qNames.size(); i++){
+            if(qNames.get(i).equals(query)){
+                command = qCommands.get(i);
+                break;
+            }
+        }
+        qCommand.setText(command);
+        ViewHandler.get().execCommand(command);
     }
     void initSearch(){
 

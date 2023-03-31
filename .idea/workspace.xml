@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="509c0f07-8854-4a40-80e2-20028eaaa2f3" name="Changes" comment="Can read the data from a csv file and insert the data into a FootagesAndReporter ArrayList">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/filereading/UPDATE.java" afterDir="false" />
+    <list default="true" id="509c0f07-8854-4a40-80e2-20028eaaa2f3" name="Changes" comment="Can now load csv files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Ressources/30032023updatetv3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Ressources/30032023updatetv3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/SQL/OnlineDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/SQL/OnlineDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/filereading/Footage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/filereading/Footage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/filereading/FootageAndReporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/filereading/FootageAndReporter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/filereading/InsertFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/filereading/InsertFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Ressources/view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Ressources/view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI/ViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +113,7 @@
       <workItem from="1680003509354" duration="17000" />
       <workItem from="1680004832238" duration="1906000" />
       <workItem from="1680170285975" duration="20662000" />
+      <workItem from="1680197300235" duration="2714000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored Project">
       <created>1679384942013</created>
@@ -198,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680186201869</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Can now load csv files">
+      <created>1680197350931</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1680197350931</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,6 +229,7 @@
     <MESSAGE value="Apostrophies doesnt kill the program" />
     <MESSAGE value="Commands work again" />
     <MESSAGE value="Can read the data from a csv file and insert the data into a FootagesAndReporter ArrayList" />
-    <option name="LAST_COMMIT_MESSAGE" value="Can read the data from a csv file and insert the data into a FootagesAndReporter ArrayList" />
+    <MESSAGE value="Can now load csv files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Can now load csv files" />
   </component>
 </project>
