@@ -6,7 +6,9 @@ In this configuration guide you set up our project in IntelliJ and with JavaFX t
 <H3>JavaFX SDK </H3>
 Make sure you have a JavaFX SDK installed, if you already have an SDK installed of JavaFX of version 19 or later, then you can skip this step. Otherwise use the link below to download one. Also remember where you save it, as we will need the path later on.
 https://gluonhq.com/products/javafx/ 
+
 ![2023-03-31 00_18_36-TV 3 Projekt - Google Docs](https://user-images.githubusercontent.com/4933675/228976768-93be4eb5-fede-4b43-84f0-2773c547febe.png)
+
 
 Choose an SDK to that OS and Architecture that matches your hardware and device. You can use the search I did on the picture above to only see SDK’s of the version we are looking for.
 Download Project and open in IntelliJ
